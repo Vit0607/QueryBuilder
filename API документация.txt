@@ -1,10 +1,30 @@
-API-документация к компоненту QueryBuilder.
+API-ДОКУМЕНТАЦИЯ К КОМПОНЕНТУ QUERYBUILDER
+
+Подключение:
+
+require_once('QueryBuilder.php');
 
 При создании экземпляра класса QueryBuilder в конструктор нужно передать объект PDO:
 
-$query_builder = QueryBuilder($pdo);
+$queryBuilder = new QueryBuilder($pdo);
 
 Дальше для вызова методов компонента в качестве аргументов передаем название таблицы, массив данных и id записи - в зависимости от метода:
 $table - название таблицы;
 $data - массив данных;
 $id - id записи.
+
+Компонент имеет 5 методов:
+
+getAll($table) - получает все записи из БД в виде массива;
+getOne($table, $id) - получает одну запись из БД в виде массива;
+create($table, $data) - добавляет запись в БД;
+update($table, $data, $id) - обновляет запись в БД;
+delete($table, $id) - удаляет запись из БД.
+
+Использование:
+
+$queryBuilder->getAll('users');
+$queryBuilder->getOne('users', 5);
+$queryBuilder->create('users', ['name' => 'John', 'email' => 'test@test.com']);
+$queryBuilder->update('users', ['name' => 'John', 'email' => 'test@test.com'], 5);
+$queryBuilder->delete('users', 5).
